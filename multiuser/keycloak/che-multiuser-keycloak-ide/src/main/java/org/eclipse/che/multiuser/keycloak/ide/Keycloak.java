@@ -70,7 +70,8 @@ public final class Keycloak extends JavaScriptObject {
           checkLoginIframe: false,
           useNonce: theUseNonce,
           scope: 'email profile',
-          redirectUri: redirectUrl
+          redirectUri: redirectUrl,
+          responseMode: 'query'
           })
             .success(function (authenticated) {
               resolve(keycloak);

@@ -222,12 +222,10 @@
                     initPromise.setSuccess();
                 }
             }
-
             configPromise.success(processInit);
             configPromise.error(function() {
                 promise.setError();
             });
-
             return promise.promise;
         }
 
@@ -506,7 +504,6 @@
                                 }
                             }
                         };
-
                         req.send(params);
                     }
                 }
@@ -593,7 +590,6 @@
                 params += '&redirect_uri=' + oauth.redirectUri;
 
                 req.withCredentials = true;
-
                 req.onreadystatechange = function() {
                     if (req.readyState == 4) {
                         if (req.status == 200) {
@@ -636,7 +632,8 @@
                         }
                     }
                 };
-
+                req.setRequestHeader('Vary', 'Origin');
+                req.setRequestHeader('Access-Control-Allow-Origin', getOrigin());
                 req.send(params);
             }
 
@@ -804,7 +801,6 @@
                                 }
                             }
                         };
-
                         req.send();
                     } else {
                         setupOidcEndoints(oidcProvider);

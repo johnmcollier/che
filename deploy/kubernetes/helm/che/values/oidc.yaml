@@ -1,0 +1,24 @@
+#
+# Copyright (c) 2012-2017 Red Hat, Inc.
+# This program and the accompanying materials are made
+# available under the terms of the Eclipse Public License 2.0
+# which is available at https://www.eclipse.org/legal/epl-2.0/
+#
+# SPDX-License-Identifier: EPL-2.0
+#
+
+# Currently, TLS support is enabled only for single-host deployments
+cheKeycloakClientId: "che-public"
+customOidcUsernameClaim: "openid"
+customOidcProvider: "https://9.42.91.213:8443/oidc/endpoint/OP"
+global:
+  multiuser: true
+  cheDedicatedKeycloak: false
+  ingressDomain: 9.42.75.72.nip.io
+  serverStrategy: multi-host
+  tls:
+    enabled: true
+    useCertManager: true
+    useStaging: true
+    secretName: che-tls
+    useSelfSignedCerts: true

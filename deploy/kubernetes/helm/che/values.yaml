@@ -16,11 +16,11 @@
 cheWorkspaceHttpProxy: ""
 cheWorkspaceHttpsProxy: ""
 cheWorkspaceNoProxy: ""
-cheImage: eclipse/che-server:nightly
+cheImage: johncollier/che-server:latest
 cheImagePullPolicy: Always
 cheKeycloakRealm: "che"
-cheKeycloakClientId: "che-public"
-#customOidcUsernameClaim: ""
+cheKeycloakClientId: "che-tester"
+customOidcUsernameClaim: "admin"
 #customOidcProvider: ""
 #workspaceDefaultRamRequest: ""
 #workspaceDefaultRamLimit: ""
