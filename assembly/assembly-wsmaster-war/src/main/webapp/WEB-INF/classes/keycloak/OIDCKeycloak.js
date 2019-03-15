@@ -588,7 +588,6 @@
                 }
 
                 params += '&redirect_uri=' + oauth.redirectUri;
-
                 req.withCredentials = true;
                 req.onreadystatechange = function() {
                     if (req.readyState == 4) {
@@ -632,8 +631,6 @@
                         }
                     }
                 };
-                req.setRequestHeader('Vary', 'Origin');
-                req.setRequestHeader('Access-Control-Allow-Origin', getOrigin());
                 req.send(params);
             }
 
@@ -643,7 +640,6 @@
                 setToken(accessToken, refreshToken, idToken, timeLocal);
 
                 if (useNonce && ((kc.tokenParsed && kc.tokenParsed.nonce != oauth.storedNonce) ||
-                    (kc.refreshTokenParsed && kc.refreshTokenParsed.nonce != oauth.storedNonce) ||
                     (kc.idTokenParsed && kc.idTokenParsed.nonce != oauth.storedNonce))) {
 
                     console.info('[KEYCLOAK] Invalid nonce, clearing token');
@@ -824,10 +820,8 @@
 
             if (refreshToken) {
                 kc.refreshToken = refreshToken;
-                kc.refreshTokenParsed = decodeToken(refreshToken);
             } else {
                 delete kc.refreshToken;
-                delete kc.refreshTokenParsed;
             }
 
             if (idToken) {

@@ -20,7 +20,7 @@ cheImage: johncollier/che-server:latest
 cheImagePullPolicy: Always
 cheKeycloakRealm: "che"
 cheKeycloakClientId: "che-tester"
-customOidcUsernameClaim: "admin"
+#customOidcUsernameClaim: "admin"
 #customOidcProvider: ""
 #workspaceDefaultRamRequest: ""
 #workspaceDefaultRamLimit: ""

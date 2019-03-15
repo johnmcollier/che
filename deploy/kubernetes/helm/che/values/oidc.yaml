@@ -9,7 +9,6 @@
 
 # Currently, TLS support is enabled only for single-host deployments
 cheKeycloakClientId: "che-public"
-customOidcUsernameClaim: "openid"
 customOidcProvider: "https://9.42.91.213:8443/oidc/endpoint/OP"
 global:
   multiuser: true
