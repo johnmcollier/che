@@ -79,6 +79,7 @@ public class KeycloakEnvironmentInitalizationFilter extends AbstractKeycloakFilt
 
     final HttpServletRequest httpRequest = (HttpServletRequest) request;
     final String token = tokenExtractor.getToken(httpRequest);
+    System.out.println("*** token: " + token);
     if (shouldSkipAuthentication(token)) {
       filterChain.doFilter(request, response);
       return;

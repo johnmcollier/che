@@ -16,33 +16,33 @@
 cheWorkspaceHttpProxy: ""
 cheWorkspaceHttpsProxy: ""
 cheWorkspaceNoProxy: ""
-cheImage: eclipse/che-server:nightly
+cheImage: johncollier/che-server:nightly
 cheImagePullPolicy: Always
 cheKeycloakRealm: "che"
-cheKeycloakClientId: "che-public"
+cheKeycloakClientId: "che00"
 #customOidcUsernameClaim: ""
-#customOidcProvider: ""
+customOidcProvider: "https://9.42.91.213:8443/oidc/endpoint/OP"
 #workspaceDefaultRamRequest: ""
 #workspaceDefaultRamLimit: ""
 #workspaceSidecarDefaultRamLimit: ""
 
 global:
   cheNamespace: ""
-  multiuser: false
+  multiuser: true
   #  This value can be passed if custom Oidc provider is used, and there is no need to deploy keycloak in multiuser mode
   #  default (if empty) is true
-  #cheDedicatedKeycloak: false
-  ingressDomain: 192.168.99.100.nip.io
+  cheDedicatedKeycloak: false
+  ingressDomain: 9.42.75.72.nip.io
   # See --annotations-prefix flag (https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/cli-arguments.md)
   ingressAnnotationsPrefix: "nginx."
   # options: default-host, single-host, multi-host
   serverStrategy: multi-host
   tls:
-    enabled: false
+    enabled: true
     useCertManager: true
     useStaging: true
     secretName: che-tls
-    useSelfSignedCerts: false
+    useSelfSignedCerts: true
   gitHubClientID: ""
   gitHubClientSecret: ""
   pvcClaim: "1Gi"
