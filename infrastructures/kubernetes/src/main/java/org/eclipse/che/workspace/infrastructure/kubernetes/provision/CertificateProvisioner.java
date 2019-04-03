@@ -39,7 +39,7 @@ import org.eclipse.che.workspace.infrastructure.kubernetes.environment.Kubernete
 @Singleton
 public class CertificateProvisioner implements ConfigurationProvisioner<KubernetesEnvironment> {
 
-  public static final String CHE_SELF_SIGNED_CERT_SECRET_SUFFIX = "-che-self-signed-cert";
+  public static final String CHE_SELF_SIGNED_CERT_SECRET_SUFFIX = "che-self-signed-cert";
   public static final String CHE_SELF_SIGNED_CERT_VOLUME = "che-self-signed-cert";
   public static final String CERT_MOUNT_PATH = "/tmp/che/secret/";
   public static final String CA_CERT_FILE = "ca.crt";
@@ -69,8 +69,7 @@ public class CertificateProvisioner implements ConfigurationProvisioner<Kubernet
     if (!isConfigured()) {
       return;
     }
-    String selfSignedCertSecretName =
-        identity.getWorkspaceId() + CHE_SELF_SIGNED_CERT_SECRET_SUFFIX;
+    String selfSignedCertSecretName = CHE_SELF_SIGNED_CERT_SECRET_SUFFIX;
     k8sEnv
         .getSecrets()
         .put(

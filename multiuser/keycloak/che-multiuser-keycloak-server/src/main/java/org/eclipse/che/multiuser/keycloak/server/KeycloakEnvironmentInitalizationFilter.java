@@ -79,7 +79,6 @@ public class KeycloakEnvironmentInitalizationFilter extends AbstractKeycloakFilt
 
     final HttpServletRequest httpRequest = (HttpServletRequest) request;
     final String token = tokenExtractor.getToken(httpRequest);
-    System.out.println("*** token: " + token);
     if (shouldSkipAuthentication(token)) {
       filterChain.doFilter(request, response);
       return;
@@ -100,8 +99,9 @@ public class KeycloakEnvironmentInitalizationFilter extends AbstractKeycloakFilt
                 keycloakSettings.get().get(KeycloakConstants.USERNAME_CLAIM_SETTING), String.class);
         if (username == null) { // fallback to unique id promised by spec
           // https://openid.net/specs/openid-connect-basic-1_0.html#ClaimStability
-          username = claims.getIssuer() + ":" + claims.getSubject();
+          username = claims.getSubject();
         }
+        System.out.println("***username: " + username);
         String email = claims.get("email", String.class);
         String id = claims.getSubject();
 

@@ -111,7 +111,8 @@ class KeycloakLoader {
                     checkLoginIframe: false,
                     useNonce: useNonce,
                     scope: 'email profile',
-                    redirectUri: keycloakSettings['che.keycloak.redirect_url.ide']
+                    redirectUri: keycloakSettings['che.keycloak.redirect_url.ide'],
+                    responseMode: 'query'
                 })
                 .success(() => {
                     resolve(keycloak);

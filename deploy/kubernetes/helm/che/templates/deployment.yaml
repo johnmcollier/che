@@ -72,7 +72,7 @@ spec:
             secretKeyRef:
               key: ca.crt
               name: self-signed-certificate
-              optional: false
+              optional: true
         {{- end }}
         image: {{ .Values.cheImage }}
         imagePullPolicy: {{ .Values.cheImagePullPolicy }}

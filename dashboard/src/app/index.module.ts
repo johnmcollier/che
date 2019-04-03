@@ -91,7 +91,7 @@ function keycloakInit(keycloakConfig: any, initOptions: any) {
       useNonce: initOptions['useNonce'],
       scope: 'email profile',
       redirectUri: initOptions['redirectUrl'],
-      responseMode: `query`
+      responseMode: 'query'
     }).success(() => {
       resolve(keycloak);
     }).error((error: any) => {

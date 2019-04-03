@@ -244,7 +244,8 @@
             var callbackState = {
                 state: state,
                 nonce: nonce,
-                redirectUri: encodeURIComponent(redirectUri)
+                redirectUri: encodeURIComponent(redirectUri),
+                responseMode: 'query'
             }
 
             if (options && options.prompt) {
@@ -1447,7 +1448,7 @@
                         } else {
                             return "http://localhost";
                         }
-                    }
+                    },
                 }
             }
 

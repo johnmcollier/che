@@ -16,11 +16,12 @@
 cheWorkspaceHttpProxy: ""
 cheWorkspaceHttpsProxy: ""
 cheWorkspaceNoProxy: ""
-cheImage: johncollier/che-server:nightly
+#cheImage: johncollier/che-server:nightly
+cheImage: johncollier/che-server:latest
 cheImagePullPolicy: Always
 cheKeycloakRealm: "che"
-cheKeycloakClientId: "che00"
-#customOidcUsernameClaim: ""
+cheKeycloakClientId: "che01"
+customOidcUsernameClaim: "preferred_username"
 customOidcProvider: "https://9.42.91.213:8443/oidc/endpoint/OP"
 #workspaceDefaultRamRequest: ""
 #workspaceDefaultRamLimit: ""
@@ -38,15 +39,15 @@ global:
   # options: default-host, single-host, multi-host
   serverStrategy: multi-host
   tls:
-    enabled: true
-    useCertManager: true
-    useStaging: true
+    enabled: false
+    useCertManager: false
+    useStaging: false
     secretName: che-tls
     useSelfSignedCerts: true
   gitHubClientID: ""
   gitHubClientSecret: ""
   pvcClaim: "1Gi"
-  cheWorkspacesNamespace: ""
+  cheWorkspacesNamespace: "che-workspaces"
   # Service account name that will be mounted to workspaces pods
   # Note that:
   # if `cheWorkspacesNamespace` is configured then service account with configured name will be created by helm chart during deploying Che
