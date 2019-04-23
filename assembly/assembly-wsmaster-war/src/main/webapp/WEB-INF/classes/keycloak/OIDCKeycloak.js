@@ -244,7 +244,8 @@
             var callbackState = {
                 state: state,
                 nonce: nonce,
-                redirectUri: encodeURIComponent(redirectUri)
+                redirectUri: encodeURIComponent(redirectUri),
+                responseMode: 'query'
             }
 
             if (options && options.prompt) {
@@ -592,8 +593,6 @@
 
                 params += '&redirect_uri=' + oauth.redirectUri;
 
-                req.withCredentials = true;
-
                 req.onreadystatechange = function() {
                     if (req.readyState == 4) {
                         if (req.status == 200) {
@@ -646,7 +645,6 @@
                 setToken(accessToken, refreshToken, idToken, timeLocal);
 
                 if (useNonce && ((kc.tokenParsed && kc.tokenParsed.nonce != oauth.storedNonce) ||
-                    (kc.refreshTokenParsed && kc.refreshTokenParsed.nonce != oauth.storedNonce) ||
                     (kc.idTokenParsed && kc.idTokenParsed.nonce != oauth.storedNonce))) {
 
                     console.info('[KEYCLOAK] Invalid nonce, clearing token');
@@ -828,10 +826,8 @@
 
             if (refreshToken) {
                 kc.refreshToken = refreshToken;
-                kc.refreshTokenParsed = decodeToken(refreshToken);
             } else {
                 delete kc.refreshToken;
-                delete kc.refreshTokenParsed;
             }
 
             if (idToken) {

@@ -143,7 +143,6 @@ public interface KubernetesEnvironmentProvisioner<T extends KubernetesEnvironmen
       imagePullSecretProvisioner.provision(k8sEnv, identity);
       proxySettingsProvisioner.provision(k8sEnv, identity);
       serviceAccountProvisioner.provision(k8sEnv, identity);
-      certificateProvisioner.provision(k8sEnv, identity);
       LOG.debug("Provisioning Kubernetes environment done for workspace '{}'", workspaceId);
     }
   }
