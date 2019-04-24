@@ -1,29 +1,29 @@
 {
-  "title": "Eclipse Che ",
-  "name": "Eclipse Che",
-  "logoFile": "che-logo.svg",
-  "logoTextFile": "che-logo-text.svg",
-  "favicon": "favicon.ico",
-  "loader": "loader.svg",
+  "title": "ICAP",
+  "name": "ICAP",
+  "logoFile": "ICAP_Black.svg",
+  "logoTextFile": "ICAP_White.svg",
+  "favicon": "favicon-48x48.png",
+  "loader": "ICAP_White.svg",
   "ideResources": "/_app/",
   "websocketContext": "/api/websocket",
-  "helpPath": "https://www.eclipse.org/che/",
+  "helpPath": "https://microclimate-dev2ops.github.io",
   "helpTitle": "Community",
-  "supportEmail": "che-dev@eclipse.org",
+  "supportEmail": "support@ibm.com",
   "oauthDocs": "Configure OAuth in the che.properties file.",
   "workspace": {
-    "priorityStacks": ["Java", "Java-MySQL", "Blank"],
-    "defaultStack": "java-mysql"
+    "priorityStacks": ["Tempest"],
+    "defaultStack": "tempest-default"
   },
   "cli" : {
     "configName" : "che.env",
     "name" : "CHE"
   },
   "docs" : {
-    "stack" : "/docs/creating-starting-workspaces.html",
-    "workspace" : "/docs/what-are-workspaces.html",
-    "factory" : "/docs/factories-getting-started.html",
-    "organization": "/docs/organizations.html",
-    "general": "/docs"
+    "stack" : "https://microclimate-dev2ops.github.io/creating-starting-workspaces.html",
+    "workspace" : "https://microclimate-dev2ops.github.io/what-are-workspaces.html",
+    "factory" : "https://microclimate-dev2ops.github.io/factories-getting-started.html",
+    "organization": "https://microclimate-dev2ops.github.io/organizations.html",
+    "general": "https://microclimate-dev2ops.github.io/documentation"
   }
 }
