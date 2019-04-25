@@ -62,7 +62,7 @@
         "projects": [],
         "attributes": {
             "editor": "org.eclipse.che.editor.theia:1.0.0",
-            "plugins": "che-machine-exec-plugin:0.0.1,http://johncollier-linuxdev1.fyre.ibm.com/tempest-plugin:0.0.1,http://9.42.80.139/tempest-che-welcome-plugin:0.0.1"
+            "plugins": "che-machine-exec-plugin:0.0.1,http://johncollier-linuxdev1.fyre.ibm.com/plugins/tempest-plugin:0.0.1,http://9.42.80.139/plugins/tempest-che-welcome-plugin:0.0.1"
         },
         "commands": [],
         "links": []
