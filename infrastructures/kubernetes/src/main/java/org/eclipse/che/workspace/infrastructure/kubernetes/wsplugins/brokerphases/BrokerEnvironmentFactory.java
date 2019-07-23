@@ -125,13 +125,10 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
             .map(this::asEnvVar)
             .collect(Collectors.toList());
 
-    SecurityContext sc = new SecurityContext();
-    sc.setAllowPrivilegeEscalation(true);
     BrokerConfig brokerConfig =
         createBrokerConfig(runtimeID, pluginFQNs, envVars, unifiedBrokerImage, pod);
     brokersConfigs.machines.put(brokerConfig.machineName, brokerConfig.machineConfig);
     brokersConfigs.configMaps.put(brokerConfig.configMapName, brokerConfig.configMap);
-    brokerConfig.container.setSecurityContext(sc);
     spec.getContainers().add(brokerConfig.container);
     spec.getVolumes()
         .add(
@@ -145,7 +142,6 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
     // Add init broker that cleans up /plugins
     BrokerConfig initBrokerConfig =
         createBrokerConfig(runtimeID, null, envVars, initBrokerImage, pod);
-    initBrokerConfig.container.setSecurityContext(sc);
     pod.getSpec().getInitContainers().add(initBrokerConfig.container);
     brokersConfigs.machines.put(initBrokerConfig.machineName, initBrokerConfig.machineConfig);
 
@@ -164,6 +160,10 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
       List<EnvVar> envVars,
       String image,
       @Nullable String brokerVolumeName) {
+    
+    SecurityContext sc = new SecurityContext();
+    sc.setAllowPrivilegeEscalation(true);
+
     final ContainerBuilder cb =
         new ContainerBuilder()
             .withName(image.toLowerCase().replaceAll("[^\\d\\w-]", "-"))
@@ -182,7 +182,8 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
                 "--registry-address",
                 Strings.nullToEmpty(pluginRegistryUrl))
             .withImagePullPolicy(brokerPullPolicy)
-            .withEnv(envVars);
+            .withEnv(envVars)
+            .withSecurityContext(sc);
     if (brokerVolumeName != null) {
       cb.withVolumeMounts(new VolumeMount(CONF_FOLDER + "/", null, brokerVolumeName, true, null));
       cb.addToArgs("-metas", CONF_FOLDER + "/" + CONFIG_FILE);
