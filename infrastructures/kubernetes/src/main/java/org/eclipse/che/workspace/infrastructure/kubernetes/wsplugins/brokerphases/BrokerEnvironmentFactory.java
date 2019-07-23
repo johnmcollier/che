@@ -28,6 +28,8 @@ import io.fabric8.kubernetes.api.model.EnvVarBuilder;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.api.model.PodBuilder;
 import io.fabric8.kubernetes.api.model.PodSpec;
+import io.fabric8.kubernetes.api.model.SecurityContext;
+import io.fabric8.kubernetes.api.model.SecurityContextBuilder;
 import io.fabric8.kubernetes.api.model.VolumeBuilder;
 import io.fabric8.kubernetes.api.model.VolumeMount;
 import java.util.Collection;
@@ -123,10 +125,13 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
             .map(this::asEnvVar)
             .collect(Collectors.toList());
 
+    SecurityContext sc = new SecurityContext();
+    sc.setAllowPrivilegeEscalation(true);
     BrokerConfig brokerConfig =
         createBrokerConfig(runtimeID, pluginFQNs, envVars, unifiedBrokerImage, pod);
     brokersConfigs.machines.put(brokerConfig.machineName, brokerConfig.machineConfig);
     brokersConfigs.configMaps.put(brokerConfig.configMapName, brokerConfig.configMap);
+    brokerConfig.container.setSecurityContext(sc);
     spec.getContainers().add(brokerConfig.container);
     spec.getVolumes()
         .add(
@@ -140,6 +145,7 @@ public abstract class BrokerEnvironmentFactory<E extends KubernetesEnvironment> 
     // Add init broker that cleans up /plugins
     BrokerConfig initBrokerConfig =
         createBrokerConfig(runtimeID, null, envVars, initBrokerImage, pod);
+    initBrokerConfig.container.setSecurityContext(sc);
     pod.getSpec().getInitContainers().add(initBrokerConfig.container);
     brokersConfigs.machines.put(initBrokerConfig.machineName, initBrokerConfig.machineConfig);
 
